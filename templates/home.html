@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hero-section {
+            background: url('https://www.w3schools.com/w3images/forest.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Slightly darker overlay */
+        }
+
+        .hero-section h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: white; /* Ensuring bright white */
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: white; /* Ensuring bright white */
+        }
+
+        .container {
+            padding-top: 50px;
+        }
+
+        .card {
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #555;
+        }
+
+        .btn-custom {
+            background-color: #28a745;
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 12px 30px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img-top {
+            border-radius: 20px 20px 0 0;
+            object-fit: cover;
+            height: 250px;
+        }
+
+        .row {
+            margin-top: 60px;
+        }
+
+        .section-header {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+
+            .card-title {
+                font-size: 1.4rem;
+            }
+
+            .card-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1>Welcome to the Crop Management System</h1>
+        <p>Helping you manage crops more efficiently with advanced machine learning models.</p>
+    </div>
+
+    <div class="container text-center">
+        <div class="section-header">
+            <h2>Explore Our Features</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='alexandr-podvalny-WOxddhzhC1w-unsplash.jpg') }}" class="card-img-top" alt="Crop Recommendation">
+                    <div class="card-body">
+                        <h5 class="card-title">Crop Recommendation</h5>
+                        <p class="card-text">Get recommendations for the best crops to grow based on your soil and environmental data.</p>
+                        <a href="/crop-recommendation" class="btn btn-custom">Go to Crop Recommendation</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='karsten-wurth-UbGYPMbMYP8-unsplash.jpg') }}" class="card-img-top" alt="Crop Yield Prediction">
+                    <div class="card-body">
+                        <h5 class="card-title">Crop Yield Prediction</h5>
+                        <p class="card-text">Predict the crop yield for various factors like rainfall, temperature, and area.</p>
+                        <a href="/crop-yield" class="btn btn-custom">Go to Crop Yield Prediction</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+
+</html>
+

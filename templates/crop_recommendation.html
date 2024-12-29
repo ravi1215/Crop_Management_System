@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crop Recommendation System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* General Styles */
+      body {
+        background: url("https://www.transparenttextures.com/patterns/wood-pattern.png"),
+          linear-gradient(to bottom, #a3d9a5, #5aaf55);
+        background-size: cover, 100%;
+        font-family: "Poppins", sans-serif;
+        color: #3e3e3e;
+        margin: 0;
+        padding: 0;
+        background-attachment: fixed;
+      }
+
+      .navbar {
+        background-color: #2c6e49;
+        border-radius: 0;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand {
+        color: #ffffff;
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .navbar-brand:hover {
+        color: #f1b332;
+      }
+
+      .hero-section {
+        text-align: center;
+        padding: 120px 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+        text-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      }
+
+      .hero-section h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .hero-section p {
+        font-size: 1.3rem;
+        font-weight: 300;
+      }
+
+      .form-container {
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+        margin-top: -60px;
+        z-index: 10;
+        position: relative;
+      }
+
+      .form-container h2 {
+        font-size: 2.5rem;
+        color: #2c6e49;
+        margin-bottom: 30px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 30px;
+      }
+
+      .form-group label {
+        font-size: 1.2rem;
+        color: #5a5a5a;
+        font-weight: 500;
+      }
+
+      .form-control {
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        padding: 12px;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: #2c6e49;
+        box-shadow: 0 0 8px rgba(42, 77, 105, 0.6);
+      }
+
+      .btn-custom {
+        background-color: #6bbf73;
+        color: white;
+        font-size: 1.3rem;
+        padding: 14px 28px;
+        border-radius: 30px;
+        width: 100%;
+        transition: all 0.3s ease;
+      }
+
+      .btn-custom:hover {
+        background-color: #5a9f62;
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .card {
+        margin-top: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: #ffffff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .card img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain; /* This will ensure the image covers the entire area */
+        border-radius: 50%; /* Keeps the image circular */
+        margin-bottom: 15px;
+      }
+
+      .card-body {
+        padding: 25px;
+        text-align: center;
+      }
+
+      .card-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #2c6e49;
+      }
+
+      .card-text {
+        font-size: 1.2rem;
+        color: #666;
+      }
+
+      .footer {
+        background-color: #2c6e49;
+        padding: 25px;
+        text-align: center;
+        color: white;
+      }
+
+      .footer p {
+        font-size: 1.1rem;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .form-container {
+          padding: 25px;
+        }
+
+        .hero-section h1 {
+          font-size: 2.8rem;
+        }
+
+        .hero-section p {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Crop Recommendation System</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <h1>Grow Your Future 🌱</h1>
+      <p>
+        AI-powered crop recommendations to help farmers make the best choices
+      </p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="container form-container">
+      <h2>Enter Your Field Data</h2>
+      <form action="/crop-recommendation" method="POST">
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <label for="Nitrogen">Nitrogen</label>
+            <input
+              type="number"
+              id="Nitrogen"
+              name="Nitrogen"
+              class="form-control"
+              placeholder="Enter Nitrogen"
+              required
+              step="0"
+            />
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="Phosporus">Phosphorus</label>
+            <input
+              type="number"
+              id="Phosporus"
+              name="Phosporus"
+              class="form-control"
+              placeholder="Enter Phosphorus"
+              required
+              step="0"
+            />
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="Potassium">Potassium</label>
+            <input
+              type="number"
+              id="Potassium"
+              name="Potassium"
+              class="form-control"
+              placeholder="Enter Potassium"
+              required
+              step="0"
+            />
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-4 form-group">
+            <label for="Temperature">Temperature (°C)</label>
+            <input
+              type="number"
+              id="Temperature"
+              name="Temperature"
+              class="form-control"
+              placeholder="Enter Temperature"
+              required
+              step="0.01"
+            />
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="Humidity">Humidity (%)</label>
+            <input
+              type="number"
+              id="Humidity"
+              name="Humidity"
+              class="form-control"
+              placeholder="Enter Humidity"
+              required
+              step="0.01"
+            />
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="pH">pH Value</label>
+            <input
+              type="number"
+              id="pH"
+              name="pH"
+              class="form-control"
+              placeholder="Enter pH value"
+              required
+              step="0.01"
+            />
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-4 form-group">
+            <label for="Rainfall">Rainfall (mm)</label>
+            <input
+              type="number"
+              id="Rainfall"
+              name="Rainfall"
+              class="form-control"
+              placeholder="Enter Rainfall"
+              required
+              step="0.01"
+            />
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-custom">
+              Get Crop Recommendation
+            </button>
+          </div>
+        </div>
+      </form>
+
+      {% if result %}
+      <div class="card">
+        <div class="card-body">
+          <img
+            src="{{ url_for('static', filename='crop.webp') }}"
+            alt="Crop Image"
+          />
+          <h5 class="card-title">Recommended Crop:</h5>
+          <p class="card-text">{{ result }}</p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2024 Crop Recommendation System. All Rights Reserved.</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

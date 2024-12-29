@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crop Yield Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        /* General Styles */
+        body {
+            background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), linear-gradient(to bottom, #f5f5f5, #e4d9b2);
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #5a4e39;
+            border-radius: 0;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .navbar-brand:hover {
+            color: #f0d08b;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 80px 20px;
+            background-image: url('https://images.unsplash.com/photo-1609192120971-05ac1cc68fc9');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-section h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            margin-top: -60px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .form-container h2 {
+            font-size: 2.2rem;
+            color: #9c7b4d;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            font-size: 1.1rem;
+            color: #5a5a5a;
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #9c7b4d;
+            box-shadow: 0 0 8px rgba(156, 123, 77, 0.6);
+        }
+
+        .btn-custom {
+            background-color: #9c7b4d;
+            color: white;
+            font-size: 1.2rem;
+            padding: 14px 28px;
+            border-radius: 30px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #7a633e;
+            transform: scale(1.05);
+        }
+
+        .card {
+            margin-top: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #f4f1e1;
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #9c7b4d;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .footer {
+            background-color: #5a4e39;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 25px;
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Crop Yield Prediction System</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1>Crop Yield Prediction 🌾 </h1>
+        <p>Accurately predict the crop yield based on environmental and agricultural data.</p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="container form-container">
+        <h2>Enter Your Field Data</h2>
+        <form action="/crop-yield" method="POST">
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="Year">Year</label>
+                    <input type="number" id="Year" name="Year" class="form-control" value="2013" required step="1">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="Rainfall">Rainfall (mm/year)</label>
+                    <input type="number" id="average_rain_fall_mm_per_year" name="average_rain_fall_mm_per_year" class="form-control" placeholder="Enter Average Rainfall (mm)" required step="0.01">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="Temperature">Temperature (°C)</label>
+                    <input type="number" id="avg_temp" name="avg_temp" class="form-control" required step="0.1">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4 form-group">
+                    <label for="Area">Area</label>
+                    <input type="text" id="Area" name="Area" class="form-control" required>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="Item">Item</label>
+                    <input type="text" id="Item" name="Item" class="form-control" required>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="Pesticides">Pesticides (tonnes)</label>
+                    <input type="number" id="pesticides_tonnes" name="pesticides_tonnes" class="form-control" required step="0.1">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-custom">Predict Yield</button>
+                </div>
+            </div>
+        </form>
+
+        {% if prediction %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Predicted Yield:</h5>
+                <p class="card-text">{{ prediction }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Crop Yield Prediction System. All Rights Reserved.</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+
+</html>
