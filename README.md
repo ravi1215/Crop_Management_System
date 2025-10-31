@@ -56,6 +56,23 @@ python app.py
 Access the application:
 The application will be available at http://127.0.0.1:5000/ in your browser.
 
+## 🧱 Run with Docker
+
+You can easily run this Flask app inside a Docker container.
+
+### **Build the image**
+```bash
+docker build -t crop_management_app .
+```
+Run the container
+```bash
+docker run -d -p 9600:9600 crop_management_app
+```
+
+Then open your browser at http://localhost:9600 🌐
+The app will start running inside the container.
+
+
 ## Usage
 
 Crop Recommendation:
